@@ -1,20 +1,17 @@
 import config from "config"
-import {MongoClient as Mongo, Db} from "mongoDb";
 import Logger from "./logger";
+import mongoose from "mongoose";
 
-export const MongoClient = {
-   client: undefined as unknown as Mongo,
-   db: undefined as unknown as Db,
+const connect = async () => {
+    const url = config.get<string>("dbUri");    
 
-   async connect(): Promise<void> {
-    const url = config.get<string>("dbUri");
-    const username = config.get<string>("dbUser");
-    const password = config.get<string>("dbPassword");
-    const client = new Mongo(url, { auth: {username, password} });
-    const db = client.db("filmes");
-
-    this.client = client;
-    this.db = db;
-    Logger.info("Conectado ao mongo!");
-   },
+    try{
+        await mongoose.connect(url);
+        Logger.info("conectado ao banco de dados")
+    } catch(e: any) {
+        Logger.error("Não foi possível conectar ao banco de dados");
+        Logger.error(e);
+    }
 };
+
+export default connect;
