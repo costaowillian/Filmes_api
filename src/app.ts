@@ -4,6 +4,7 @@ import express from "express";
 import config from "config";
 import router from "./router";
 import { MongoClient } from "../config/db";
+import Logger from "../config/logger";
 
 const main = () => {
     const app = express();
@@ -16,7 +17,8 @@ const main = () => {
     
     app.listen(port, async () => {
         await MongoClient.connect();
-        console.log(`Aplicação rodando na porta ${port}!`);
+        Logger.info(`Aplicação rodando na porta ${port}!`);
+        Logger.info(`http://localhost:${port}`);
     });
 }
 

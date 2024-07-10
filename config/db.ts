@@ -1,5 +1,6 @@
 import config from "config"
 import {MongoClient as Mongo, Db} from "mongoDb";
+import Logger from "./logger";
 
 export const MongoClient = {
    client: undefined as unknown as Mongo,
@@ -14,6 +15,6 @@ export const MongoClient = {
 
     this.client = client;
     this.db = db;
-    console.log("Conectado ao mongo!");
+    Logger.info("Conectado ao mongo!");
    },
 };
