@@ -1,6 +1,9 @@
+require("dotenv").config();
+
 import express from "express";
 import config from "config";
 import router from "./router";
+import { MongoClient } from "../config/db";
 
 const main = () => {
     const app = express();
@@ -12,6 +15,7 @@ const main = () => {
     const port = config.get<number>("port");
     
     app.listen(port, async () => {
+        await MongoClient.connect();
         console.log(`Aplicação rodando na porta ${port}!`);
     });
 }
