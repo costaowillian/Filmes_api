@@ -10,6 +10,8 @@ services:
       - "27017:27017"
     volumes:
       - ./data:/data/db
+    networks:
+      - filmes-network
 
   mongo-express:
     container_name: filmes-mongo-express
@@ -25,3 +27,21 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: willianpass
     ports:
       - "8001:8081"
+    networks:
+      - filmes-network
+
+  movie-api:
+    container_name: movie-api
+    image: movie-docker:1.1
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URL: mongodb://root:rootpass@mongo:27017/
+    ports:
+      - "3030:3030"
+    networks:
+      - filmes-network
+
+networks:
+  filmes-network:
+    driver: bridge
