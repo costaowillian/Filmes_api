@@ -19,7 +19,6 @@ const main =  async () => {
     const port = config.get<number>("port");
     
     app.listen(port, async () => {
-        console.log("rodou");
         await db();
         Logger.info(`Aplicação rodando na porta ${port}!`);
         Logger.info(`http://localhost:${port}`);
