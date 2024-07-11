@@ -1,0 +1,10 @@
+
+FROM mongo:7.0.12
+
+ENV MONGO_INITDB_ROOT_USERNAME=root \
+    MONGO_INITDB_ROOT_PASSWORD=rootpass \
+    MONGO_INITDB_DATABASE=filmes
+
+EXPOSE 27017
+
+CMD ["mongod"]
