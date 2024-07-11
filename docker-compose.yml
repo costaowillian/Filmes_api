@@ -2,7 +2,7 @@ version: "3.8"
 services:
   mongo:
     container_name: filmes-mongo
-    image: mongo:7.0.12
+    image: filmes-mongo:1.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpass
@@ -10,7 +10,7 @@ services:
       - "27017:27017"
     volumes:
       - ./data:/data/db
-    
+
   mongo-express:
     container_name: filmes-mongo-express
     image: mongo-express
