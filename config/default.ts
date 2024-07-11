@@ -4,6 +4,6 @@ const dbUser = process.env.USERNAME_DB;
 export default {
     port: 3030,
 
-    dbUri: `mongodb://${dbUser}:${dbPassword}@localhost:27017/`,
+    dbUri: `mongodb://${dbUser}:${dbPassword}@mongo:27017/`,
     env: "development",
 }
